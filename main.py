@@ -3,13 +3,13 @@ from grid import Grid
 
 pygame.init()
 
-darkBlue=(44,44,127)
+dark_blue=(44,44,127)
 
-screen= pygame.display.set_mode((300,600))
+screen = pygame.display.set_mode((300,600))
 
 clock=pygame.time.Clock()
 
-game_grid=Grid()
+game_grid = Grid()
 game_grid.print_grid()
 
 while True:
@@ -18,7 +18,7 @@ while True:
             pygame.quit()
             sys.exit() 
     
-    screen.fill(darkBlue)
+    screen.fill(dark_blue)
     game_grid.draw(screen)
     pygame.display.update()
     clock.tick(60)
