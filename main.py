@@ -1,6 +1,6 @@
 import pygame,sys
-from data.grid.grid import Grid
-from data.blocks.blocks import *
+from grid import Grid
+from blocks import *
 
 pygame.init()
 

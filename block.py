@@ -1,4 +1,4 @@
-from data.colors.colors import Colors
+from colors import Colors
 import pygame 
 
 class Block:
