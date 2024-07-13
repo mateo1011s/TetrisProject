@@ -1,6 +1,6 @@
-from colors import Colors
+from src.colors.colors import Colors
 import pygame
-from position import Position 
+from src.blocks.position import Position 
 
 class Block:
     def __init__(self,id):

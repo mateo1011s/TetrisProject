@@ -1,5 +1,5 @@
-from grid import Grid
-from blocks import *
+from src.grid.grid import Grid
+from src.blocks.blocks import *
 import random
 
 class Game:
@@ -31,6 +31,11 @@ class Game:
         if self.block_inside() == False:
             self.current_block.move(-1,0)
     
+    def rotate(self):
+        self.current_block.rotate()
+        if self.block_inside() == False:
+            self.current_block.undo_rotation()
+    
     def block_inside(self):
         tiles = self.current_block.get_cell_positions()
         for tile in tiles:
@@ -38,11 +43,6 @@ class Game:
                 return False
         return True
     
-    def rotate(self):
-        self.current_block.rotate()
-        if self.block_inside() == False:
-            self.current_block.undo_rotation()
-
     def draw(self, screen):
         self.grid.draw(screen)
         self.current_block.draw(screen)

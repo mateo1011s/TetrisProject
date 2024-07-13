@@ -1,5 +1,5 @@
 import pygame,sys
-from game import Game
+from src.game.game import Game
 
 pygame.init()
 dark_blue=(44,44,127)

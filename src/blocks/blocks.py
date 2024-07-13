@@ -1,5 +1,5 @@
-from block import Block
-from position import Position
+from src.blocks.block import Block
+from src.blocks.position import Position
 
 class Lblock(Block):
     def __init__(self):
