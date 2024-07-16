@@ -1,10 +1,17 @@
 import pygame,sys
 from src.game.game import Game
+from src.colors.colors import Colors
 
 pygame.init()
-dark_blue=(44,44,127)
 
-screen = pygame.display.set_mode((300,600))
+title_font = pygame.font.Font(None, 40)
+score_surface = title_font.render("Score", True, Colors.white)
+next_surface = title_font.render("Next Block", True, Colors.white)
+
+score_rect = pygame.Rect(320, 160 , 170, 60)
+next_rect = pygame.Rect(320, 340 , 170, 180)
+
+screen = pygame.display.set_mode((500,620))
 pygame.display.set_caption("Tetris Game")
 
 clock=pygame.time.Clock()
@@ -34,7 +41,11 @@ while True:
         if event.type == GAME_UPDATE and game.game_over == False:
             game.move_down()
                 
-    screen.fill(dark_blue)
+    screen.fill(Colors.dark_blue)
+    screen.blit(score_surface, (365, 100, 50, 50))
+    screen.blit(next_surface, (335, 280, 50, 50))
+    pygame.draw.rect(screen, Colors.light_blue, score_rect, 0, 10)
+    pygame.draw.rect(screen, Colors.light_blue, next_rect, 0, 10)
     game.draw(screen)
     pygame.display.update()
     clock.tick(60)

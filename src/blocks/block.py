@@ -37,6 +37,6 @@ class Block:
     def draw(self,screen):
         tiles = self.get_cell_positions()
         for tile in tiles:
-            tile_rect = pygame.Rect(tile.column * self.cell_size + 1, tile.row  * self.cell_size + 1, 
+            tile_rect = pygame.Rect(tile.column * self.cell_size + 11, tile.row  * self.cell_size + 11, 
                                     self.cell_size - 1, self.cell_size -1 ) 
             pygame.draw.rect(screen, self.colors[self.id], tile_rect)    
