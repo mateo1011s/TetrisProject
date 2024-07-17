@@ -47,6 +47,7 @@ while True:
                     game.move_right()
                 if event.key == pygame.K_DOWN or event.key == pygame.K_s and game.game_over == False:
                     game.move_down()
+                    game.update_score(0, 1)
                 if event.key == pygame.K_UP or event.key == pygame.K_w and game.game_over == False:
                     game.rotate()
             if event.type == GAME_UPDATE and game.game_over == False:
@@ -55,10 +56,13 @@ while True:
     if show_welcome:
         welcome_window.draw()
     else:
+        score_value_surface = title_font.render(str(game.score), True, Colors.white)
         screen.fill(Colors.dark_blue)
         screen.blit(score_surface, (365, 100, 50, 50))
         screen.blit(next_surface, (335, 280, 50, 50))
         pygame.draw.rect(screen, Colors.light_blue, score_rect, 0, 10)
+        screen.blit(score_value_surface, score_value_surface.get_rect(centerx = score_rect.centerx,
+        centery = score_rect.centery))
         pygame.draw.rect(screen, Colors.light_blue, next_rect, 0, 10)
         game.draw(screen)
     
