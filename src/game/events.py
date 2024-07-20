@@ -3,10 +3,9 @@ from src.game.interface_user import InterfaceUser
 
 class EventsInGame:
     def __init__(self, screen):
-        self.GAME_UPDATE = pygame.USEREVENT
-        pygame.time.set_timer(self.GAME_UPDATE, 600)
         self.interface = InterfaceUser(screen)
         self.game = self.interface.game
+        pygame.time.set_timer(self.game.GAME_UPDATE, self.game.initial_speed)
 
     
     def process_events(self, screen):
@@ -56,7 +55,7 @@ class EventsInGame:
                         self.game.rotate()
                     if event.key == pygame.K_ESCAPE:
                         self.game.show_pause = True
-                if event.type == self.GAME_UPDATE and self.game.game_over == False:
+                if event.type == self.game.GAME_UPDATE and self.game.game_over == False:
                     self.game.move_down()
         if self.game.show_welcome:
             self.game.welcome_window.draw()
