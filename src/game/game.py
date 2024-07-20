@@ -1,16 +1,23 @@
 from src.grid.grid import Grid
 from src.blocks.blocks import *
+from src.menus.welcome_window import WelcomeWindow
+from src.menus.game_over_window import GameOverWindow
 import random
 
 class Game:
-    def __init__(self):
+    def __init__(self, screen):
+        self.screen = screen
         self.grid = Grid()
         self.blocks = [Lblock(), Jblock(), Iblock(), Oblock(), Sblock(), Tblock(), Zblock()]
         self.current_block = self.get_random_block()
         self.next_block = self.get_random_block()
         self.game_over = False
-        self.score = 0 
-    
+        self.show_welcome = True
+        self.show_game_over = False
+        self.welcome_window = WelcomeWindow(screen)
+        self.game_over_window = GameOverWindow(screen) 
+        self.score = 0
+
     def update_score(self, lines_cleared, move_down_points):
         if lines_cleared == 1:
             self.score += 100
@@ -54,13 +61,21 @@ class Game:
         self.update_score(rows_cleared, 0)
         if self.block_fits() == False:
             self.game_over = True
-    
+
     def reset(self):
         self.grid.reset()
         self.blocks = [Lblock(), Jblock(), Iblock(), Oblock(), Sblock(), Tblock(), Zblock()]
         self.current_block = self.get_random_block()
         self.next_block = self.get_random_block()
         self.score = 0
+        self.game_over = False
+
+    def reset_game(self):
+        self.reset()
+        self.welcome_window = WelcomeWindow(self.screen)
+        self.game_over_window = GameOverWindow(self.screen)
+        self.show_welcome = True
+        self.show_game_over = False
 
     def block_fits(self):
         tiles = self.current_block.get_cell_positions()
