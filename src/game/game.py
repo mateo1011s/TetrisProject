@@ -2,6 +2,7 @@ from src.grid.grid import Grid
 from src.blocks.blocks import *
 from src.menus.welcome_window import WelcomeWindow
 from src.menus.game_over_window import GameOverWindow
+from src.menus.pause_window import PauseWindow
 import random
 
 class Game:
@@ -14,8 +15,10 @@ class Game:
         self.game_over = False
         self.show_welcome = True
         self.show_game_over = False
+        self.show_pause = False
         self.welcome_window = WelcomeWindow(screen)
         self.game_over_window = GameOverWindow(screen) 
+        self.pause_window = PauseWindow(screen)
         self.score = 0
 
     def update_score(self, lines_cleared, move_down_points):
@@ -74,8 +77,11 @@ class Game:
         self.reset()
         self.welcome_window = WelcomeWindow(self.screen)
         self.game_over_window = GameOverWindow(self.screen)
+        self.pause_window = PauseWindow(self.screen)
         self.show_welcome = True
         self.show_game_over = False
+        self.show_pause = False
+
 
     def block_fits(self):
         tiles = self.current_block.get_cell_positions()

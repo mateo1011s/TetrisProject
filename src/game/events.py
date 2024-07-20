@@ -29,6 +29,18 @@ class EventsInGame:
                     elif action == "restart":
                         self.game.show_game_over = False
                         self.game.reset()
+            elif self.game.show_pause:
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    action = self.game.pause_window.handle_event(event)
+                    if action == "resume":
+                        self.game.show_pause = False
+                    elif action == "main_menu":
+                        self.game.show_welcome = True
+                        self.game.show_pause = False
+                        self.interface.reset_game()
+                    elif action == "restart":
+                        self.game.show_pause = False
+                        self.game.reset()
             else: 
                 if event.type == pygame.KEYDOWN:
                     if self.game.game_over:
@@ -42,12 +54,16 @@ class EventsInGame:
                         self.game.update_score(0, 1)
                     if event.key == pygame.K_UP or event.key == pygame.K_w and self.game.game_over == False:
                         self.game.rotate()
+                    if event.key == pygame.K_ESCAPE:
+                        self.game.show_pause = True
                 if event.type == self.GAME_UPDATE and self.game.game_over == False:
                     self.game.move_down()
         if self.game.show_welcome:
             self.game.welcome_window.draw()
         elif self.game.show_game_over:
             self.game.game_over_window.draw()
+        elif self.game.show_pause:
+            self.game.pause_window.draw()
         else:
             self.interface.draw(screen)
             self.game.draw(screen)    
