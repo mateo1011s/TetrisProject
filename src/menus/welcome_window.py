@@ -30,8 +30,8 @@ class WelcomeWindow:
         pygame.draw.rect(self.screen, self.start_button_color, self.start_button_rect)
         pygame.draw.rect(self.screen, self.exit_button_color, self.exit_button_rect)
         
-        start_button_surface = self.button_font.render(self.start_button_text, True, (0, 0, 0))
-        exit_button_surface = self.button_font.render(self.exit_button_text, True, (0, 0, 0))
+        start_button_surface = self.button_font.render(self.start_button_text, True, Colors.black)
+        exit_button_surface = self.button_font.render(self.exit_button_text, True, Colors.black)
         
         start_button_rect = start_button_surface.get_rect(center=self.start_button_rect.center)
         exit_button_rect = exit_button_surface.get_rect(center=self.exit_button_rect.center)

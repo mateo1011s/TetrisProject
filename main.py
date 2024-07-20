@@ -1,8 +1,8 @@
 import pygame,sys
 from src.game.game import Game
 from src.colors.colors import Colors
-from src.menu.welcome_window import WelcomeWindow
-
+from src.menus.welcome_window import WelcomeWindow
+from src.menus.game_over_window import GameOverWindow
 
 pygame.init()
 
@@ -18,13 +18,20 @@ pygame.display.set_caption("Tetris Game")
 
 clock=pygame.time.Clock()
 
-game=Game()
+
 
 GAME_UPDATE = pygame.USEREVENT
 pygame.time.set_timer(GAME_UPDATE, 600)
 
-welcome_window = WelcomeWindow(screen)
-show_welcome = True
+def reset_game():
+    global game, welcome_window, game_over_window, show_welcome, show_game_over
+    game = Game()
+    welcome_window = WelcomeWindow(screen)
+    game_over_window = GameOverWindow(screen)
+    show_welcome = True
+    show_game_over = False
+
+reset_game()
 
 while True:
     for event in pygame.event.get():
@@ -36,11 +43,19 @@ while True:
                 action = welcome_window.handle_event(event)
                 if action == "start":
                     show_welcome = False
-        else: 
-            if event.type == pygame.KEYDOWN:
-                if game.game_over == True:
+        elif show_game_over:
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                action = game_over_window.handle_event(event)
+                if action == "main_menu":
+                    reset_game()
+                elif action == "restart":
+                    show_game_over = False
                     game.game_over = False
                     game.reset()
+        else: 
+            if event.type == pygame.KEYDOWN:
+                if game.game_over:
+                    show_game_over = True
                 if event.key == pygame.K_LEFT or event.key == pygame.K_a and game.game_over == False:
                     game.move_left()
                 if event.key == pygame.K_RIGHT or event.key == pygame.K_d and game.game_over == False:
@@ -55,6 +70,8 @@ while True:
     
     if show_welcome:
         welcome_window.draw()
+    elif show_game_over:
+        game_over_window.draw()
     else:
         score_value_surface = title_font.render(str(game.score), True, Colors.white)
         screen.fill(Colors.dark_blue)
