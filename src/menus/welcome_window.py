@@ -7,18 +7,21 @@ class WelcomeWindow:
         self.width, self.height = screen.get_size()
         self.font = pygame.font.Font(None, 74)
         self.button_font = pygame.font.Font(None, 36)
+        self.authors_font = pygame.font.Font(None, 24)
         
-        self.message = "Welcome"
+        self.message = "Welcome to Tetris"
         self.message_color = Colors.white
+        self.authors = "@mateo1011s @diegoiza34"
+        self.authors_color = Colors.gray
         
         self.start_button_text = "Start Game"
         self.exit_button_text = "Exit"
         
-        self.start_button_color = Colors.light_blue
+        self.start_button_color = Colors.turquoise
         self.exit_button_color = Colors.red
         
-        self.start_button_rect = pygame.Rect(self.width // 2 - 100, self.height // 2 - 50, 200, 50)
-        self.exit_button_rect = pygame.Rect(self.width // 2 - 100, self.height // 2 + 20, 200, 50)
+        self.start_button_rect = pygame.Rect((self.width // 2) - 100, (self.height // 2) - 50, 200, 50)
+        self.exit_button_rect = pygame.Rect((self.width // 2) - 100, (self.height // 2) + 20, 200, 50)
 
     def draw(self):
         self.screen.fill(Colors.black)
@@ -26,7 +29,11 @@ class WelcomeWindow:
         message_surface = self.font.render(self.message, True, self.message_color)
         message_rect = message_surface.get_rect(center=(self.width // 2, self.height // 3))
         self.screen.blit(message_surface, message_rect)
-        
+
+        authors_surface = self.authors_font.render(self.authors, True, self.authors_color)
+        authors_rect = authors_surface.get_rect(center= (115,600))
+        self.screen.blit(authors_surface, authors_rect)
+
         pygame.draw.rect(self.screen, self.start_button_color, self.start_button_rect)
         pygame.draw.rect(self.screen, self.exit_button_color, self.exit_button_rect)
         

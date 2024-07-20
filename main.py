@@ -1,8 +1,4 @@
 import pygame,sys
-from src.game.game import Game
-from src.colors.colors import Colors
-from src.menus.welcome_window import WelcomeWindow
-from src.menus.game_over_window import GameOverWindow
 from src.game.interface_user import InterfaceUser
 
 pygame.init()
