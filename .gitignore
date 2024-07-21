@@ -3,3 +3,6 @@
 *.py[cod]
 
 .pytest_cache/
+
+/build
+main.spec
