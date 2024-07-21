@@ -9,10 +9,11 @@ class Colors:
     blue = (58, 69, 200)
     white = (255,255,255)
     dark_blue = (44,44,127)
-    light_blue = (59, 85, 162)
+    light_blue = (81, 108, 191)
     black = (0, 0, 0)
     turquoise = (52, 241, 232)
     gray = (150,150,150)
+    dark_black= (5,5,5)
 
     @classmethod
     def get_cell_colors(cls):

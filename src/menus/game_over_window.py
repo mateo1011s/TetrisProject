@@ -11,8 +11,8 @@ class GameOverWindow:
         
         self.message = "Game Over"
         self.message_color = Colors.white
-        self.water_mark = "IloveAbby"
-        self.water_mark_color = Colors.dark_gray
+        self.water_mark = "Abby<3"
+        self.water_mark_color = Colors.dark_black
         
         self.main_menu_button_text = "Main Menu"
         self.restart_button_text = "Restart"
@@ -34,7 +34,7 @@ class GameOverWindow:
         self.screen.blit(message_surface, message_rect)
 
         water_mark_surface = self.water_mark_font.render(self.water_mark, True, self.water_mark_color)
-        water_mark_rect = water_mark_surface.get_rect(center= (100,600))
+        water_mark_rect = water_mark_surface.get_rect(center= (50,600))
         self.screen.blit(water_mark_surface, water_mark_rect)
         
         pygame.draw.rect(self.screen, self.main_menu_button_color, self.main_menu_button_rect)
