@@ -22,6 +22,18 @@ class EventsInGame:
                     if action == "scores":
                         self.game.show_scores = True
                         self.game.show_welcome = False
+            elif self.game.show_nickname:
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    action = self.game.nickname_window.handle_event(event)
+                    if action == "main_menu":
+                        self.game.show_welcome = True
+                        self.game.show_nickname = False
+                        self.game.nickname_window.reset()
+                self.game.nickname_window.handle_event(event)
+                if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
+                    self.game.player_nickname = self.game.nickname_window.nickname
+                    self.game.show_nickname = False
+                    self.game.reset()
             elif self.game.show_game_over:
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     action = self.game.game_over_window.handle_event(event)
@@ -29,6 +41,7 @@ class EventsInGame:
                         self.game.show_welcome = True
                         self.game.show_game_over = False
                         self.interface.reset_game()
+                        self.game.nickname_window.reset()
                     if action == "scores":
                         self.game.show_scores = True
                         self.game.show_game_over = False
@@ -42,6 +55,7 @@ class EventsInGame:
                         self.game.show_welcome = True
                         self.game.show_scores = False
                         self.interface.reset_game()
+                        self.game.nickname_window.reset()
             elif self.game.show_pause:
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     action = self.game.pause_window.handle_event(event)
@@ -51,6 +65,7 @@ class EventsInGame:
                         self.game.show_welcome = True
                         self.game.show_pause = False
                         self.interface.reset_game()
+                        self.game.nickname_window.reset()
                     elif action == "restart":
                         self.game.show_pause = False
                         self.game.reset()
@@ -73,6 +88,8 @@ class EventsInGame:
                     self.game.move_down()
         if self.game.show_welcome:
             self.game.welcome_window.draw()
+        elif self.game.show_nickname:
+            self.game.nickname_window.draw()
         elif self.game.show_game_over:
             self.game.game_over_window.draw()
         elif self.game.show_pause:

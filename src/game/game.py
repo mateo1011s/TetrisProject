@@ -5,6 +5,7 @@ from src.menus.welcome_window import WelcomeWindow
 from src.menus.game_over_window import GameOverWindow
 from src.menus.pause_window import PauseWindow
 from src.top_players.scores import ScoresWindow
+from src.top_players.nickname import NicknameWindow
 from src.database.db import save_score
 import random
 
@@ -17,10 +18,13 @@ class Game:
         self.next_block = self.get_random_block()
         self.game_over = False
         self.show_welcome = True
+        self.show_nickname = False
         self.show_game_over = False
         self.show_pause = False
         self.show_scores = False
         self.welcome_window = WelcomeWindow(screen)
+        self.nickname_window = NicknameWindow(screen)
+        self.player_nickname = ""
         self.game_over_window = GameOverWindow(screen) 
         self.pause_window = PauseWindow(screen)
         self.scores_window = ScoresWindow(screen)
@@ -99,6 +103,7 @@ class Game:
         self.pause_window = PauseWindow(self.screen)
         self.scores_window = ScoresWindow(self.screen)
         self.show_welcome = True
+        self.show_nickname = False
         self.show_game_over = False
         self.show_pause = False
         self.show_scores = False
