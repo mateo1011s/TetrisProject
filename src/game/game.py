@@ -4,6 +4,7 @@ from src.blocks.blocks import *
 from src.menus.welcome_window import WelcomeWindow
 from src.menus.game_over_window import GameOverWindow
 from src.menus.pause_window import PauseWindow
+from src.top_players.scores import ScoresWindow
 import random
 
 class Game:
@@ -17,9 +18,11 @@ class Game:
         self.show_welcome = True
         self.show_game_over = False
         self.show_pause = False
+        self.show_scores = False
         self.welcome_window = WelcomeWindow(screen)
         self.game_over_window = GameOverWindow(screen) 
         self.pause_window = PauseWindow(screen)
+        self.scores_window = ScoresWindow(screen)
         self.score = 0
         self.GAME_UPDATE = pygame.USEREVENT
         self.initial_speed = 600
@@ -92,9 +95,11 @@ class Game:
         self.welcome_window = WelcomeWindow(self.screen)
         self.game_over_window = GameOverWindow(self.screen)
         self.pause_window = PauseWindow(self.screen)
+        self.scores_window = ScoresWindow(self.screen)
         self.show_welcome = True
         self.show_game_over = False
         self.show_pause = False
+        self.show_scores = False
         self.current_speed = self.initial_speed
         pygame.time.set_timer(self.GAME_UPDATE, self.initial_speed)
 

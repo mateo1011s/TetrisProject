@@ -17,14 +17,17 @@ class GameOverWindow:
         self.main_menu_button_text = "Main Menu"
         self.restart_button_text = "Restart"
         self.exit_button_text = "Exit"
+        self.scores_button_text = " Top Scores"
         
         self.main_menu_button_color = Colors.turquoise
         self.restart_button_color = Colors.green
         self.exit_button_color = Colors.red
+        self.scores_button_color = Colors.orange
         
         self.main_menu_button_rect = pygame.Rect((self.width // 2) - 100, (self.height // 2) - 70, 200, 50)
         self.restart_button_rect = pygame.Rect((self.width // 2) - 100, (self.height // 2), 200, 50)
         self.exit_button_rect = pygame.Rect((self.width // 2)- 100, (self.height // 2) + 70, 200, 50)
+        self.scores_button_rect = pygame.Rect((self.width // 2)- 100, (self.height // 2) + 140, 200, 50)
         
     def draw(self):
         self.screen.fill(Colors.black)
@@ -40,18 +43,22 @@ class GameOverWindow:
         pygame.draw.rect(self.screen, self.main_menu_button_color, self.main_menu_button_rect)
         pygame.draw.rect(self.screen, self.restart_button_color, self.restart_button_rect)
         pygame.draw.rect(self.screen, self.exit_button_color, self.exit_button_rect)
+        pygame.draw.rect(self.screen, self.scores_button_color, self.scores_button_rect)
         
         main_menu_button_surface = self.button_font.render(self.main_menu_button_text, True, Colors.black)
         restart_button_surface = self.button_font.render(self.restart_button_text, True, Colors.black)
         exit_button_surface = self.button_font.render(self.exit_button_text, True, Colors.black)
+        scores_button_surface = self.button_font.render(self.scores_button_text, True, Colors.black)
         
         main_menu_button_rect = main_menu_button_surface.get_rect(center=self.main_menu_button_rect.center)
         restart_button_rect = restart_button_surface.get_rect(center=self.restart_button_rect.center)
         exit_button_rect = exit_button_surface.get_rect(center=self.exit_button_rect.center)
+        scores_button_rect = scores_button_surface.get_rect(center=self.scores_button_rect.center)
         
         self.screen.blit(main_menu_button_surface, main_menu_button_rect)
         self.screen.blit(restart_button_surface, restart_button_rect)
         self.screen.blit(exit_button_surface, exit_button_rect)
+        self.screen.blit(scores_button_surface, scores_button_rect)
 
     def handle_event(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
@@ -59,6 +66,9 @@ class GameOverWindow:
                 return "main_menu"
             elif self.restart_button_rect.collidepoint(event.pos):
                 return "restart"
+            elif self.scores_button_rect.collidepoint(event.pos):
+                return "scores"
             elif self.exit_button_rect.collidepoint(event.pos):
                 pygame.quit()
                 sys.exit()
+            

@@ -18,6 +18,10 @@ class EventsInGame:
                     action = self.game.welcome_window.handle_event(event)
                     if action == "start":
                         self.game.show_welcome = False
+                        self.game.show_nickname = True 
+                    if action == "scores":
+                        self.game.show_scores = True
+                        self.game.show_welcome = False
             elif self.game.show_game_over:
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     action = self.game.game_over_window.handle_event(event)
@@ -25,9 +29,19 @@ class EventsInGame:
                         self.game.show_welcome = True
                         self.game.show_game_over = False
                         self.interface.reset_game()
+                    if action == "scores":
+                        self.game.show_scores = True
+                        self.game.show_game_over = False
                     elif action == "restart":
                         self.game.show_game_over = False
                         self.game.reset()
+            elif self.game.show_scores:
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    action = self.game.scores_window.handle_event(event)
+                    if action == "main_menu":
+                        self.game.show_welcome = True
+                        self.game.show_scores = False
+                        self.interface.reset_game()
             elif self.game.show_pause:
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     action = self.game.pause_window.handle_event(event)
@@ -63,6 +77,8 @@ class EventsInGame:
             self.game.game_over_window.draw()
         elif self.game.show_pause:
             self.game.pause_window.draw()
+        elif self.game.show_scores:
+            self.game.scores_window.draw()
         else:
             self.interface.draw(screen)
             self.game.draw(screen)    
