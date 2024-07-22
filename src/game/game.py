@@ -6,7 +6,7 @@ from src.menus.game_over_window import GameOverWindow
 from src.menus.pause_window import PauseWindow
 from src.top_players.scores import ScoresWindow
 from src.top_players.nickname import NicknameWindow
-from src.database.db import save_score
+from src.database.db import *
 import random
 
 class Game:
@@ -84,7 +84,7 @@ class Game:
         self.update_score(rows_cleared, 0)
         if self.block_fits() == False:
             self.game_over = True
-            save_score(self.score)
+            save_score(self.player_nickname, self.score)
 
     def reset(self):
         self.grid.reset()

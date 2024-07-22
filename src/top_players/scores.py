@@ -19,18 +19,18 @@ class ScoresWindow:
         self.top_scores = get_top_scores()
     
     def draw(self):
-        self.update_scores() 
+        self.update_scores()
         self.screen.fill(Colors.black)
 
         title_text = "Top Scores"
         title_surface = self.title_font.render(title_text, True, Colors.white)
-        title_rect = title_surface.get_rect(center=(self.width // 2, self.height // 2 - 100))
+        title_rect = title_surface.get_rect(center=(self.width // 2, self.height // 2 - 150))
         self.screen.blit(title_surface, title_rect)
 
-        y_offset = self.height // 2 - 50
-        for index, (score,) in enumerate(self.top_scores):
+        y_offset = self.height // 2 - 100
+        for index, (nickname, score) in enumerate(self.top_scores):
             rank_text = f"Rank {index + 1}"
-            score_text = f"{score}"
+            score_text = f"{nickname}: {score}"
             
             rank_surface = self.button_font.render(rank_text, True, Colors.white)
             rank_rect = rank_surface.get_rect(center=(self.width // 2 - 100, y_offset + (index * 50)))
