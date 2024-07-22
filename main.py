@@ -11,8 +11,15 @@ clock=pygame.time.Clock()
 events = EventsInGame(screen)
 
 while True:
-    events.process_events(screen)
-    
-    pygame.display.update()
-    clock.tick(60)
+    try:
+        events.process_events(screen)
+        pygame.display.update()
+        clock.tick(60)
+    except pygame.error as e:
+        print(f"Pygame error: {e}")
+        break
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+        break
 
+pygame.quit()
