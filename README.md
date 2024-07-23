@@ -141,7 +141,7 @@ In this version of Tetris, the player controls pieces called "tetrominoes," whic
    cd TetrisProject
 2. **Install the required dependencies**:
    ```sh
-   pip install pygame
+   pip install -r requirements.txt
 
 ### Usage
 1. **Run the main game file**:
